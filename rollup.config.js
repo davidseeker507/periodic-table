@@ -6,6 +6,7 @@ import { terser } from 'rollup-plugin-terser';
 import css from 'rollup-plugin-css-only';
 import { minify } from 'csso';
 import fs from 'fs';
+import path from 'path';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -47,8 +48,15 @@ export default {
 
 		// we'll extract any component CSS out into
 		// a separate file - better for performance
-		css({ 
-			output: (styles) => fs.writeFileSync('public/build/bundle.css', minify(styles).css)
+		css({
+			output: (styles) => {
+				const outFile = 'public/build/bundle.css';
+				const dir = path.dirname(outFile);
+				if (!fs.existsSync(dir)) {
+					fs.mkdirSync(dir, { recursive: true });
+				}
+				fs.writeFileSync(outFile, minify(styles).css);
+			}
 		}),
 
 		// If you have external dependencies installed from
