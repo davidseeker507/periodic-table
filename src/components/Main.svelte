@@ -245,9 +245,7 @@
 
     <hr style="margin-top: 40px"/>
     
-    <div class="footer">
-        <p class="m-0">Made by <a class="strong" href="https://github.com/scientific-dev">TheSudarsanDev</a></p>
-        <p style="margin-top: 4px">TheSudarsanDev © 2022</p>
+    <div class="footer">        
     </div>
 </div>
 
